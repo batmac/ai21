@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 )
@@ -78,7 +77,7 @@ func req[D, T any](c *Client, method string, path string, data D) (T, error) {
 		if err != nil {
 			return *new(T), err
 		}
-		log.Println(string(jsonDataS))
+		// log.Println(string(jsonDataS))
 		jsonData = bytes.NewReader(jsonDataS)
 	}
 
@@ -101,7 +100,7 @@ func req[D, T any](c *Client, method string, path string, data D) (T, error) {
 		result = n.New()
 	}
 	r, _ := io.ReadAll(res.Body)
-	log.Println(string(r))
+	// log.Println(string(r))
 	err = json.NewDecoder(bytes.NewReader(r)).Decode(&result)
 
 	return result, err
