@@ -1,3 +1,3 @@
-module github.com/batmac/go-ai21
+module github.com/batmac/ai21
 
 go 1.20
