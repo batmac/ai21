@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/batmac/go-ai21"
+	"github.com/batmac/ai21"
 )
 
 func main() {
