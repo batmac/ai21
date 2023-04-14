@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/batmac/ai21"
 )
 
 func main() {
 	client := ai21.NewClientFromEnv()
+	client.Log = log.Println
 	/* resp, err := client.ContextualAnswers(ContextualAnswersRequest{
 		Question: "Did the economy shrink after the Omicron variant arrived?",
 		Context:  "In 2020 and 2021, enormous QE — approximately $4.4 trillion, or 18%, of 2021 gross domestic product (GDP) — and enormous fiscal stimulus (which has been and always will be inflationary) — approximately $5 trillion, or 21%, of 2021 GDP — stabilized markets and allowed companies to raise enormous amounts of capital. In addition, this infusion of capital saved many small businesses and put more than $2.5 trillion in the hands of consumers and almost $1 trillion into state and local coffers. These actions led to a rapid decline in unemployment, dropping from 15% to under 4% in 20 months — the magnitude and speed of which were both unprecedented. Additionally, the economy grew 7% in 2021 despite the arrival of the Delta and Omicron variants and the global supply chain shortages, which were largely fueled by the dramatic upswing in consumer spending and the shift in that spend from services to goods. Fortunately, during these two years, vaccines for COVID-19 were also rapidly developed and distributed.In today's economy, the consumer is in excellent financial shape (on average), with leverage among the lowest on record, excellent mortgage underwriting (even though we've had home price appreciation), plentiful jobs with wage increases and more than $2 trillion in excess savings, mostly due to government stimulus. Most consumers and companies (and states) are still flush with the money generated in 2020 and 2021, with consumer spending over the last several months 12% above pre-COVID-19 levels. (But we must recognize that the account balances in lower-income households, smaller to begin with, are going down faster and that income for those households is not keeping pace with rising inflation.) Today's economic landscape is completely different from the 2008 financial crisis when the consumer was extraordinarily overleveraged, as was the financial system as a whole — from banks and investment banks to shadow banks, hedge funds, private equity, Fannie Mae and many other entities. In addition, home price appreciation, fed by bad underwriting and leverage in the mortgage system, led to excessive speculation, which was missed by virtually everyone — eventually leading to nearly $1 trillion in actual losses.",

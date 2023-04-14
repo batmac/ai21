@@ -38,6 +38,8 @@ type transport struct {
 type Client struct {
 	*http.Client
 	BaseURL string
+
+	Log func(v ...any)
 }
 
 func (t *transport) RoundTrip(req *http.Request) (*http.Response, error) {
@@ -57,6 +59,7 @@ func NewClient(apiKey string) *Client {
 			},
 		},
 		BaseURL: BaseURL,
+		Log:     blackholeLog,
 	}
 }
 
@@ -78,6 +81,7 @@ func req[D, T any](c *Client, method string, path string, data D) (T, error) {
 			return *new(T), err
 		}
 		// log.Println(string(jsonDataS))
+		c.Log(string(jsonDataS))
 		jsonData = bytes.NewReader(jsonDataS)
 	}
 
@@ -101,7 +105,11 @@ func req[D, T any](c *Client, method string, path string, data D) (T, error) {
 	}
 	r, _ := io.ReadAll(res.Body)
 	// log.Println(string(r))
+	c.Log(string(r))
 	err = json.NewDecoder(bytes.NewReader(r)).Decode(&result)
 
 	return result, err
+}
+
+func blackholeLog(_ ...any) {
 }
